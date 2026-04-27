@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>RECARGAS GAMES | Premium Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@500;700&display=swap');
+        
+        body { background-color: #05070a; color: #e2e8f0; font-family: 'Rajdhani', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .header-font { font-family: 'Orbitron', sans-serif; }
+        
+        #aviso-inicial { display: flex; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 500; backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px; }
+        .aviso-card { background: #111827; border: 2px solid #ef4444; border-radius: 25px; padding: 30px; text-align: center; max-width: 350px; box-shadow: 0 0 30px rgba(239, 68, 68, 0.3); }
+
+        .game-card { background: #0f121a; border: 1px solid #1e293b; border-radius: 18px; margin-bottom: 10px; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .product-name { font-weight: 900; color: white; font-size: 14px; text-transform: uppercase; }
+        .btn-action { background: linear-gradient(90deg, #1d4ed8, #3b82f6); color: white; font-weight: 900; padding: 10px 18px; border-radius: 12px; font-size: 10px; }
+        
+        .input-field { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; width: 100%; color: white; outline: none; margin-top: 8px; font-size: 14px; transition: 0.3s; }
+        
+        .pago-container { background: #111827; border: 1px solid #1e293b; border-radius: 24px; padding: 20px; }
+        .bank-tab { font-size: 10px; font-weight: 800; color: #475569; padding-bottom: 8px; border-bottom: 2px solid transparent; transition: 0.3s; }
+        .bank-tab.active { color: #3b82f6; border-color: #3b82f6; }
+        
+        .copy-row { background: #1e293b; border-radius: 12px; padding: 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .copy-text { font-weight: 700; color: white; font-size: 15px; letter-spacing: 1px; }
+        .icon-copy { color: #3b82f6; font-size: 16px; cursor: pointer; }
+
+        .monto-box { background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.1); border-radius: 15px; padding: 15px; text-align: center; margin-top: 15px; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        .aviso-categoria { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 12px; padding: 10px; margin-bottom: 15px; display: none; }
+        
+        .btn-float { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); z-index: 1000; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        .soporte-section { margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); padding: 30px 0; text-align: center; }
+    </style>
+</head>
+<body class="pb-24">
+
+    <a href="https://wa.me/584228242411?text=Hola,%20necesito%20soporte%20con%20una%20recarga" class="btn-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div id="aviso-inicial">
+        <div class="aviso-card">
+            <i class="fas fa-shield-alt text-red-500 text-5xl mb-4"></i>
+            <h2 class="header-font text-white font-black text-xl mb-4 italic uppercase">¡IMPORTANTE!</h2>
+            <p class="text-sm text-gray-300 font-bold mb-6">Verifica tus datos. Errores en ID o correo no tienen reembolso.</p>
+            <button onclick="cerrarAviso()" class="w-full bg-red-600 text-white py-4 rounded-xl font-black uppercase text-xs tracking-widest">Aceptar y Entrar</button>
+        </div>
+    </div>
+
+    <nav class="sticky top-0 z-50 bg-[#05070a]/90 border-b border-white/5 backdrop-blur-md px-6 py-5 flex justify-center">
+        <h1 class="header-font text-lg font-black italic text-white uppercase tracking-tighter">Recargas<span class="text-blue-500">Games</span></h1>
+    </nav>
+
+    <div class="flex overflow-x-auto gap-6 px-6 py-4 bg-[#0a0d14] border-b border-white/5 no-scrollbar mb-4">
+        <button onclick="cambiarCategoria('Free Fire', this)" class="tab-btn active text-[11px] uppercase font-bold">Free Fire</button>
+        <button onclick="cambiarCategoria('Netflix', this)" class="tab-btn text-[11px] uppercase font-bold opacity-50">Netflix</button>
+        <button onclick="cambiarCategoria('Roblox', this)" class="tab-btn text-[11px] uppercase font-bold opacity-50">Roblox</button>
+        <button onclick="cambiarCategoria('Block Strike', this)" class="tab-btn text-[11px] uppercase font-bold opacity-50">Block Strike</button>
+    </div>
+
+    <main class="max-w-md mx-auto px-4">
+        <div id="aviso-netflix" class="aviso-categoria">
+            <p class="text-[10px] text-red-400 font-bold uppercase text-center"><i class="fas fa-exclamation-triangle"></i> No cambiar contraseña ni datos de la pantalla. Un solo dispositivo.</p>
+        </div>
+        <div id="aviso-roblox" class="aviso-categoria">
+            <p class="text-[10px] text-red-400 font-bold uppercase text-center"><i class="fas fa-key"></i> La recarga de Roblox es por cuenta. Debes desactivar la verificación en dos pasos (PIN/2FA).</p>
+        </div>
+
+        <div id="grid-productos"></div>
+
+        <div id="seccion-pago" class="hidden mt-6">
+            <div class="pago-container">
+                <div class="flex gap-4 border-b border-white/5 mb-4">
+                    <button id="tab-ven" onclick="switchBank('ven')" class="bank-tab active uppercase">0102(Venezuela)</button>
+                    <button id="tab-ban" onclick="switchBank('ban')" class="bank-tab uppercase">0134(Banesco)</button>
+                </div>
+
+                <div id="datos-banco">
+                    <div id="row-telf" class="copy-row">
+                        <span class="copy-text">04228242411</span>
+                        <i class="fas fa-copy icon-copy" onclick="copiarDato('04228242411')"></i>
+                    </div>
+                    <div class="copy-row">
+                        <span class="copy-text">V-32824869</span>
+                        <i class="fas fa-copy icon-copy" onclick="copiarDato('32824869')"></i>
+                    </div>
+                    <div id="row-banco" class="copy-row">
+                        <span class="copy-text">0102(Venezuela)</span>
+                        <i class="fas fa-copy icon-copy" onclick="copiarDato('0102')"></i>
+                    </div>
+                </div>
+
+                <div class="monto-box">
+                    <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Monto a Enviar</p>
+                    <div class="flex items-center justify-center gap-3">
+                        <span id="monto-bs-display" class="text-green-500 font-black text-2xl">0bs</span>
+                        <i class="fas fa-copy text-green-500/50 cursor-pointer" onclick="copiarMonto()"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3 mt-6">
+                <div id="campos-dinamicos"></div>
+                <div id="feedback-id" class="text-[10px] font-bold hidden uppercase text-center py-1"></div>
+                
+                <input type="text" id="ref-pago" placeholder="REFERENCIA (4 DÍGITOS)" class="input-field font-bold" maxlength="4">
+                
+                <div class="relative">
+                    <input type="text" id="input-descuento" placeholder="¿CÓDIGO DE DESCUENTO?" class="input-field border-dashed border-gray-600 uppercase font-bold text-center" oninput="aplicarDescuento()">
+                    <p id="msg-descuento" class="text-[9px] font-bold mt-1 text-center hidden uppercase"></p>
+                </div>
+
+                <button onclick="finalizarYEnviar()" class="btn-action w-full py-5 mt-4 uppercase tracking-widest text-xs">Confirmar en WhatsApp <i class="fab fa-whatsapp ml-1"></i></button>
+            </div>
+        </div>
+
+        <div class="soporte-section">
+            <a href="mailto:recargasgames16@gmail.com" class="text-xs text-gray-500 font-bold flex items-center justify-center gap-2">
+                <i class="fas fa-envelope"></i> recargasgames16@gmail.com
+            </a>
+            <p class="text-[9px] text-gray-600 uppercase mt-4">© 2026 Recargas Games - Todos los derechos reservados</p>
+        </div>
+    </main>
+
+    <script>
+        const TASA = 650;
+        const TU_WHATSAPP = "584228242411";
+        let prodSeleccionado = null, precioFinal = 0, bancoActivo = 'ven', categoriaActiva = "Free Fire";
+        let timeoutID = null;
+
+        const productos = {
+            "Free Fire": [
+                { n: "110 DIAMANTES 💎", u: 0.97 }, { n: "220 DIAMANTES 💎", u: 1.96 }, 
+                { n: "341 DIAMANTES 💎", u: 3.20 }, { n: "572 DIAMANTES 💎", u: 4.89 },
+                { n: "1.166 DIAMANTES 💎", u: 9.00 }, { n: "2.398 DIAMANTES 💎", u: 19.00 },
+                { n: "6.160 DIAMANTES 💎", u: 48.00 }, { n: "T. SEMANAL BÁSICA 🎫", u: 0.73 },
+                { n: "T. SEMANAL 🎫", u: 2.50 }, { n: "T. MENSUAL 🎫", u: 11.00 },
+                { n: "PASÉ BOOYAH 🎭", u: 3.50 }, { n: "PASÉ DE NIVEL 📈", u: 4.00 }
+            ],
+            "Netflix": [{ n: "PANTALLA NETFLIX 📺", u: 4.50 }],
+            "Roblox": [{ n: "400 ROBUX 🧸", u: 5.00 }, { n: "800 ROBUX 🧸", u: 10.00 }],
+            "Block Strike": [
+                { n: "51 MONEDAS 🪙", u: 0.52 }, { n: "105 MONEDAS 🪙", u: 1.00 }, { n: "320 MONEDAS 🪙", u: 2.95 }, 
+                { n: "540 MONEDAS 🪙", u: 4.90 }, { n: "1100 MONEDAS 🪙", u: 10.00 }, { n: "2260 MONEDAS 🪙", u: 20.00 }
+            ]
+        };
+
+        function formatBS(num) { return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "bs"; }
+
+        function switchBank(bank) {
+            bancoActivo = bank;
+            document.getElementById('tab-ven').classList.toggle('active', bank === 'ven');
+            document.getElementById('tab-ban').classList.toggle('active', bank === 'ban');
+            const rT = document.getElementById('row-telf'), rB = document.getElementById('row-banco');
+            if(bank === 'ven') {
+                rT.innerHTML = `<span class="copy-text">04228242411</span><i class="fas fa-copy icon-copy" onclick="copiarDato('04228242411')"></i>`;
+                rB.innerHTML = `<span class="copy-text">0102(Venezuela)</span><i class="fas fa-copy icon-copy" onclick="copiarDato('0102')"></i>`;
+            } else {
+                rT.innerHTML = `<span class="copy-text">04264696162</span><i class="fas fa-copy icon-copy" onclick="copiarDato('04264696162')"></i>`;
+                rB.innerHTML = `<span class="copy-text">0134(Banesco)</span><i class="fas fa-copy icon-copy" onclick="copiarDato('0134')"></i>`;
+            }
+        }
+
+        function cambiarCategoria(cat, btn) {
+            categoriaActiva = cat;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.add('opacity-50'));
+            btn.classList.remove('opacity-50');
+            document.getElementById('aviso-netflix').style.display = (cat === 'Netflix') ? 'block' : 'none';
+            document.getElementById('aviso-roblox').style.display = (cat === 'Roblox') ? 'block' : 'none';
+            const campos = document.getElementById('campos-dinamicos');
+            if(cat === 'Roblox') {
+                campos.innerHTML = `<input type="text" id="d1" placeholder="CORREO" class="input-field font-bold w-full"><input type="password" id="d2" placeholder="CONTRASEÑA" class="input-field font-bold w-full mt-2">`;
+            } else {
+                campos.innerHTML = `<input type="text" id="d1" placeholder="${cat === 'Netflix' ? 'NÚMERO DE TELÉFONO' : 'ID DEL JUGADOR'}" class="input-field font-bold w-full" oninput="validarID(this)">`;
+            }
+            document.getElementById('grid-productos').innerHTML = productos[cat].map(i => {
+                const precioBs = Math.round(i.u * TASA);
+                return `<div class="game-card"><div><h4 class="product-name mb-1">${i.n}</h4><span class="text-blue-500 font-black">${formatBS(precioBs)}</span></div><button onclick="seleccionar('${i.n}', ${precioBs})" class="btn-action">ELEGIR</button></div>`;
+            }).join('');
+            document.getElementById('seccion-pago').classList.add('hidden');
+            document.getElementById('feedback-id').classList.add('hidden');
+        }
+
+        function validarID(input) {
+            const feedback = document.getElementById('feedback-id');
+            if(categoriaActiva !== 'Netflix' && categoriaActiva !== 'Roblox') {
+                if(input.value.length >= 8) {
+                    feedback.classList.remove('hidden');
+                    feedback.innerHTML = `<span class="text-orange-500"><i class="fas fa-spinner fa-spin"></i> Buscando ID...</span>`;
+                    clearTimeout(timeoutID);
+                    timeoutID = setTimeout(() => {
+                        feedback.innerHTML = `<span class="text-green-500"><i class="fas fa-check-circle"></i> ID Verificado</span>`;
+                    }, 1200);
+                } else {
+                    feedback.classList.add('hidden');
+                }
+            }
+        }
+
+        function aplicarDescuento() {
+            const inputField = document.getElementById('input-descuento');
+            const val = inputField.value.toUpperCase();
+            const msg = document.getElementById('msg-descuento');
+            if(val === "") {
+                inputField.style.borderColor = "rgba(255,255,255,0.1)";
+                msg.classList.add('hidden');
+                precioFinal = prodSeleccionado.precio;
+            } else if(val === "GAMES") {
+                inputField.style.borderColor = "#10b981";
+                msg.innerText = "¡CÓDIGO VERIFICADO! -3%";
+                msg.className = "text-[9px] font-bold mt-1 text-center uppercase text-green-500";
+                msg.classList.remove('hidden');
+                precioFinal = Math.round(prodSeleccionado.precio * 0.97);
+            } else {
+                inputField.style.borderColor = "#ef4444";
+                msg.innerText = "CÓDIGO INVÁLIDO";
+                msg.className = "text-[9px] font-bold mt-1 text-center uppercase text-red-500";
+                msg.classList.remove('hidden');
+                precioFinal = prodSeleccionado.precio;
+            }
+            document.getElementById('monto-bs-display').innerText = formatBS(precioFinal);
+        }
+
+        function seleccionar(n, pb) {
+            prodSeleccionado = { nombre: n, precio: pb };
+            aplicarDescuento();
+            document.getElementById('seccion-pago').classList.remove('hidden');
+            document.getElementById('seccion-pago').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copiarDato(texto) { navigator.clipboard.writeText(texto); }
+        function copiarMonto() { navigator.clipboard.writeText(precioFinal.toString()); }
+
+        function finalizarYEnviar() {
+            const d1 = document.getElementById('d1').value, ref = document.getElementById('ref-pago').value;
+            if(!d1 || !ref) return alert("⚠️ Completa los datos");
+            let extra = (document.getElementById('d2')) ? `\n🔑 Pass: ${document.getElementById('d2').value}` : "";
+            const cod = document.getElementById('input-descuento').value.toUpperCase() === "GAMES" ? "\n🎁 Cupón: GAMES" : "";
+            window.open(`https://wa.me/${TU_WHATSAPP}?text=${encodeURIComponent(`*NUEVO PEDIDO*\nProd: ${prodSeleccionado.nombre}\nMonto: ${formatBS(precioFinal)}\nDato: ${d1}${extra}${cod}\nRef: ${ref}`)}`, '_blank');
+        }
+
+        function cerrarAviso() { document.getElementById('aviso-inicial').style.display = 'none'; }
+        window.onload = () => cambiarCategoria('Free Fire', document.querySelector('.tab-btn'));
+    </script>
+</body>
+</html>
