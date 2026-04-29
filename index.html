@@ -3,245 +3,826 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>RECARGAS GAMES | Premium Store</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Recargas Games - Free Fire, Roblox, Netflix y más</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@500;700&display=swap');
-        
-        body { background-color: #05070a; color: #e2e8f0; font-family: 'Rajdhani', sans-serif; -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
-        .header-font { font-family: 'Orbitron', sans-serif; }
-        
-        /* MANTENIMIENTO OVERLAY */
-        #pantalla-mantenimiento {
-            position: fixed; inset: 0; background: radial-gradient(circle, #0f172a 0%, #05070a 100%);
-            z-index: 9999; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .gear-icon { font-size: 80px; color: #3b82f6; filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.5)); animation: spin 4s linear infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        .online-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #10b981; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0f1e 0%, #0f172a 100%);
+            color: #fff;
+            padding: 20px;
+        }
 
-        .game-card { background: #0f121a; border: 1px solid #1e293b; border-radius: 18px; margin-bottom: 10px; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; position: relative; }
-        .game-card.selected { border-color: #10b981; background: #0a1a14; }
-        .product-name { font-weight: 900; color: white; font-size: 14px; text-transform: uppercase; }
-        .btn-action { background: linear-gradient(90deg, #1d4ed8, #3b82f6); color: white; font-weight: 900; padding: 10px 18px; border-radius: 12px; font-size: 10px; z-index: 2; }
-        
-        .check-circle { display: none; color: #10b981; font-size: 18px; margin-right: 10px; animation: scaleIn 0.3s ease; }
-        .game-card.selected .check-circle { display: block; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-        .input-field { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; width: 100%; color: white; outline: none; margin-top: 8px; font-size: 14px; transition: 0.3s; }
-        .pago-container { background: #111827; border: 1px solid #1e293b; border-radius: 24px; padding: 20px; }
-        
-        .copy-row { background: #1e293b; border-radius: 12px; padding: 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; cursor: pointer; }
-        .copy-text { font-weight: 700; color: white; font-size: 14px; }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+        }
 
-        .monto-box { background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.1); border-radius: 15px; padding: 15px; text-align: center; margin-top: 15px; cursor: pointer; }
-        
-        .modal-custom { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 3000; backdrop-filter: blur(10px); padding: 20px; }
-        .modal-card { background: #0a0d14; border: 1px solid #1e293b; border-radius: 25px; max-width: 400px; margin: 40px auto; max-height: 85vh; overflow-y: auto; padding: 25px; }
+        .header h1 {
+            font-size: 2rem;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
 
-        .btn-float { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); z-index: 1000; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .header p {
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+
+        .game-menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: rgba(30, 41, 59, 0.6);
+            padding: 15px;
+            border-radius: 50px;
+        }
+
+        .menu-item {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background: #4ecdc4;
+            color: #0f172a;
+        }
+
+        .game-section {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            display: none;
+        }
+
+        .game-section.active-section {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .game-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-left: 4px solid;
+            padding-left: 15px;
+        }
+
+        .game-title.freefire { border-color: #ff6b35; }
+        .game-title.blockstrike { border-color: #00ff88; }
+        .game-title.netflix { border-color: #e50914; }
+        .game-title.roblox { border-color: #ff4365; }
+        .game-title.callofduty { border-color: #ffb347; }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
+
+        .product-card {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 12px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-3px);
+            border-color: #4ecdc4;
+        }
+
+        .product-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .product-price-bs {
+            color: #fbbf24;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
+        .product-price-usd {
+            color: #64748b;
+            font-size: 0.7rem;
+            margin-bottom: 10px;
+        }
+
+        .choose-btn {
+            background: transparent;
+            border: 1px solid #4ecdc4;
+            color: #4ecdc4;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .choose-btn:hover {
+            background: #4ecdc4;
+            color: #0f172a;
+        }
+
+        .warning-box {
+            background: rgba(245, 158, 11, 0.15);
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .warning-box.roblox-msg {
+            border-left-color: #ff4365;
+            background: rgba(255, 67, 101, 0.1);
+        }
+
+        .warning-box.netflix-msg {
+            border-left-color: #e50914;
+            background: rgba(229, 9, 20, 0.1);
+        }
+
+        .payment-section {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .payment-title {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4ecdc4;
+        }
+
+        .payment-subtitle {
+            text-align: center;
+            color: #fbbf24;
+            margin-bottom: 25px;
+        }
+
+        .payment-card {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .payment-card h3 {
+            color: #fbbf24;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .bank-details {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 12px;
+            margin: 15px 0;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .detail-label {
+            color: #94a3b8;
+        }
+
+        .detail-value {
+            font-family: monospace;
+        }
+
+        .copy-all-btn {
+            background: linear-gradient(90deg, #4ecdc4, #2dd4bf);
+            border: none;
+            color: #0f172a;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .client-form {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 20px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+        }
+
+        .client-form h3 {
+            color: #4ecdc4;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #94a3b8;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: white;
+            font-size: 1rem;
+        }
+
+        /* Estilo para el resultado de verificación de ID */
+        .verify-result {
+            margin-top: 8px;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .verify-result.success {
+            background: rgba(78, 205, 196, 0.2);
+            border: 1px solid #4ecdc4;
+            color: #4ecdc4;
+        }
+
+        .verify-result.error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+        }
+
+        .verify-result.loading {
+            background: rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+        }
+
+        /* RESUMEN DEL PEDIDO */
+        .order-summary {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #4ecdc4;
+        }
+
+        .order-summary h4 {
+            color: #4ecdc4;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .order-summary p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .send-order-btn {
+            background: linear-gradient(90deg, #4ecdc4, #2dd4bf);
+            border: none;
+            color: #0f172a;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        .selected-product-info {
+            background: rgba(78, 205, 196, 0.2);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            margin-bottom: 15px;
+            border: 1px solid #4ecdc4;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128C7E;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
-<body class="pb-24">
-
-    <div id="pantalla-mantenimiento">
-        <i class="fas fa-cog gear-icon mb-6"></i>
-        <h2 class="header-font text-2xl font-black text-white italic uppercase mb-2">En Mantenimiento</h2>
-        <a href="https://wa.me/584228242411" class="btn-action py-4 px-10 text-xs uppercase">Soporte Directo</a>
-    </div>
-
-    <div id="toast-copy" class="fixed bottom-24 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-6 py-2 rounded-full font-bold text-xs z-[5000] hidden">¡COPIADO! ✅</div>
-
-    <a href="https://wa.me/584228242411" class="btn-float"><i class="fab fa-whatsapp"></i></a>
-
-    <nav class="sticky top-0 z-50 bg-[#05070a]/90 border-b border-white/5 backdrop-blur-md px-6 py-5 flex justify-between items-center">
-        <button onclick="abrirModal('modal-ayuda')" class="text-gray-400 text-lg"><i class="fas fa-question-circle"></i></button>
-        <div class="text-center">
-            <h1 class="header-font text-lg font-black italic text-white uppercase tracking-tighter">Recargas<span class="text-blue-500">Games</span></h1>
-            <p class="text-[9px] font-bold text-gray-500 uppercase flex items-center justify-center gap-1">
-                <span class="online-dot"></span> Operadores en línea
-            </p>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 RECARGAS GAMES</h1>
+            <p>OPERADORES EN LÍNEA</p>
         </div>
-        <button onclick="abrirModal('modal-historial')" class="text-blue-500 text-lg"><i class="fas fa-history"></i></button>
-    </nav>
 
-    <div class="flex overflow-x-auto gap-6 px-6 py-4 bg-[#0a0d14] border-b border-white/5 no-scrollbar mb-4 mt-2">
-        <button onclick="cambiarCategoria('Free Fire', this)" class="tab-btn active text-[11px] uppercase font-bold">Free Fire</button>
-        <button onclick="cambiarCategoria('Netflix', this)" class="tab-btn text-[11px] uppercase font-bold opacity-50">Netflix</button>
-        <button onclick="cambiarCategoria('Roblox', this)" class="tab-btn text-[11px] uppercase font-bold opacity-50">Roblox</button>
-        <button onclick="cambiarCategoria('Block Strike', this)" class="tab-btn text-[11px] uppercase font-bold opacity-50">Block Strike</button>
-    </div>
+        <div class="game-menu">
+            <div class="menu-item active" data-section="freefire">FREE FIRE</div>
+            <div class="menu-item" data-section="netflix">NETFLIX</div>
+            <div class="menu-item" data-section="roblox">ROBLOX</div>
+            <div class="menu-item" data-section="blockstrike">BLOCK STRIKE</div>
+            <div class="menu-item" data-section="callofduty">CALL OF DUTY</div>
+        </div>
 
-    <main class="max-w-md mx-auto px-4">
-        <div id="aviso-especifico" class="hidden"></div>
-        <div id="grid-productos"></div>
+        <div id="freefire" class="game-section active-section">
+            <div class="game-title freefire">🔥 FREE FIRE - DIAMANTES</div>
+            <div class="products-grid" id="freefire-products"></div>
+            <div class="game-title freefire" style="margin-top: 30px;">🎟️ TARJETAS Y PASES</div>
+            <div class="products-grid" id="passes-products"></div>
+        </div>
 
-        <div id="seccion-pago" class="hidden mt-6">
-            <div class="pago-container">
-                <h3 class="text-[10px] text-gray-500 font-bold uppercase mb-4 text-center italic">Datos de pago móvil</h3>
-                <div id="datos-banco">
-                    <div class="copy-row" onclick="copiarDato('Banco de Venezuela (0102)')"><span class="copy-text">🏦 Banco de Venezuela (0102)</span><i class="fas fa-copy text-blue-500"></i></div>
-                    <div class="copy-row" onclick="copiarDato('32824869')"><span class="copy-text">🪪 32824869</span><i class="fas fa-copy text-blue-500"></i></div>
-                    <div class="copy-row" onclick="copiarDato('04228242411')"><span class="copy-text">📲 04228242411</span><i class="fas fa-copy text-blue-500"></i></div>
+        <div id="netflix" class="game-section">
+            <div class="game-title netflix">🎬 NETFLIX</div>
+            <div class="products-grid" id="netflix-products"></div>
+            <div class="warning-box netflix-msg">⚠️ Usa la cuenta con responsabilidad. No compartas la contraseña.</div>
+        </div>
+
+        <div id="roblox" class="game-section">
+            <div class="game-title roblox">🧸 ROBLOX</div>
+            <div class="products-grid" id="roblox-products"></div>
+            <div class="warning-box roblox-msg">⚠️ La recarga es por cuenta. Necesitarás tu correo y usuario de Roblox.</div>
+        </div>
+
+        <div id="blockstrike" class="game-section">
+            <div class="game-title blockstrike">🔫 BLOCK STRIKE</div>
+            <div class="products-grid" id="blockstrike-products"></div>
+        </div>
+
+        <div id="callofduty" class="game-section">
+            <div class="game-title callofduty">💥 CALL OF DUTY</div>
+            <div class="products-grid" id="cod-products"></div>
+        </div>
+
+        <div class="payment-section" id="paymentSection">
+            <div class="payment-title">💸 DATOS DE PAGO</div>
+            <div class="payment-subtitle">🔹 Banco de Venezuela 🔹</div>
+            <div class="payment-card">
+                <h3>🏦 Transferencia Bancaria</h3>
+                <div class="bank-details">
+                    <div class="detail-row"><span class="detail-label">Banco</span><span class="detail-value">Venezuela (0102)</span></div>
+                    <div class="detail-row"><span class="detail-label">Cédula</span><span class="detail-value">32824869</span></div>
+                    <div class="detail-row"><span class="detail-label">Teléfono</span><span class="detail-value">04228242411</span></div>
+                    <div class="detail-row"><span class="detail-label">Monto</span><span class="detail-value" id="dynamicAmount">[Selecciona un producto]</span></div>
                 </div>
-                <div class="monto-box" onclick="copiarMonto()">
-                    <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Monto a Enviar</p>
-                    <div class="flex items-center justify-center gap-3">
-                        <span id="monto-bs-display" class="text-green-500 font-black text-2xl">0bs</span>
-                        <i class="fas fa-copy text-green-500/30"></i>
-                    </div>
-                </div>
+                <button class="copy-all-btn" id="copyBankBtn">📋 Copiar todos los datos</button>
             </div>
 
-            <div class="space-y-3 mt-6">
-                <div id="campos-dinamicos"></div>
-                <div id="feedback-id" class="text-[10px] font-bold hidden uppercase text-center py-1"></div>
-                <input type="text" id="ref-pago" placeholder="REFERENCIA (4 DÍGITOS)" class="input-field font-bold" maxlength="4">
+            <div class="client-form" id="clientForm">
+                <h3>📝 COMPLETA TUS DATOS</h3>
+                <div class="selected-product-info" id="selectedProductInfo"></div>
                 
-                <input type="text" id="input-descuento" placeholder="¿CÓDIGO DE DESCUENTO?" class="input-field border-dashed border-gray-600 uppercase font-bold text-center" oninput="aplicarDescuento()">
-                <div id="feedback-cupon" class="text-[10px] font-bold hidden uppercase text-center py-1"></div>
-
-                <button onclick="finalizarYEnviar()" class="btn-action w-full py-5 mt-4 uppercase tracking-widest text-xs">Confirmar en WhatsApp <i class="fab fa-whatsapp ml-1"></i></button>
+                <!-- RESUMEN DEL PEDIDO (sin código de seguimiento) -->
+                <div class="order-summary" id="orderSummary" style="display: none;">
+                    <h4>📋 RESUMEN DEL PEDIDO</h4>
+                    <p><strong>Producto:</strong> <span id="summaryProduct"></span></p>
+                    <p><strong>Monto:</strong> <span id="summaryAmount"></span></p>
+                    <p><strong>ID/Usuario:</strong> <span id="summaryUserData"></span></p>
+                    <p><strong>Referencia:</strong> <span id="summaryReference"></span></p>
+                </div>
+                
+                <div id="dynamicFormFields"></div>
+                <button class="send-order-btn" id="previewOrderBtn" style="display: none;">👁️ VER RESUMEN DEL PEDIDO</button>
+                <button class="send-order-btn" id="sendOrderBtn" style="display: none;">✅ CONFIRMAR Y ENVIAR</button>
             </div>
         </div>
-    </main>
 
-    <div id="modal-historial" class="modal-custom"><div class="modal-card"><div class="flex justify-between items-center mb-6"><h2 class="header-font text-white font-black text-lg italic uppercase">Historial 🛒</h2><button onclick="cerrarModal('modal-historial')" class="text-gray-500"><i class="fas fa-times"></i></button></div><div id="lista-historial"></div><button onclick="limpiarHistorial()" class="w-full mt-4 text-[10px] text-red-500 font-bold uppercase opacity-50">Borrar historial</button></div></div>
-    <div id="modal-ayuda" class="modal-custom"><div class="modal-card"><h2 class="header-font text-white font-black text-lg italic uppercase mb-4">Ayuda 📖</h2><p class="text-sm text-gray-300">Selecciona tu producto, paga el monto indicado y envía la referencia por WhatsApp para procesar tu carga.</p><button onclick="cerrarModal('modal-ayuda')" class="btn-action w-full mt-6 py-4">ENTENDIDO</button></div></div>
+        <div class="footer">
+            <p>© 2025 RECARGAS GAMES - Productos digitales, sin devolución</p>
+        </div>
+    </div>
+
+    <a href="https://wa.me/584264696162" class="whatsapp-float" target="_blank">
+        💬
+    </a>
 
     <script>
-        const mantenimientoActivo = false; 
-        const TASA = 660;
-        let prodSeleccionado = null, precioFinal = 0, categoriaActiva = "Free Fire";
-        const sndSuccess = new Audio('https://www.soundjay.com/buttons/sounds/button-09a.mp3');
+           // ==================== PRECIOS ====================
+        const freefireProducts = [
+            { name: "110", usd: 0.97, bs: 632 },
+            { name: "220", usd: 1.96, bs: 1264 },
+            { name: "341", usd: 3.20, bs: 1995 },
+            { name: "572", usd: 4.89, bs: 2985 },
+            { name: "1.166", usd: 9.00, bs: 5550 },
+            { name: "1.738", usd: 13.50, bs: 8549 },
+            { name: "2.398", usd: 19.00, bs: 10800 },
+            { name: "6.160", usd: 48.00, bs: 28200 }
+        ];
 
-        if(mantenimientoActivo) { document.getElementById('pantalla-mantenimiento').style.display = 'flex'; }
+        const passesProducts = [
+            { name: "PASE B", usd: 4.05, bs: 2677 },
+            { name: "SEMANAL BÁSICA", usd: 0.68, bs: 447 },
+            { name: "SEMANAL", usd: 2.50, bs: 1650 },
+            { name: "MENSUAL", usd: 11.00, bs: 7260 },
+            { name: "PASE BOOYAH", usd: 3.50, bs: 2310 },
+            { name: "PASE DE NIVEL", usd: 4.00, bs: 2640 }
+        ];
 
-        const productos = {
-            "Free Fire": [
-                { n: "110 DIAMANTES 💎", u: 0.97 }, { n: "220 DIAMANTES 💎", u: 1.96 }, { n: "341 DIAMANTES 💎", u: 3.20 }, 
-                { n: "572 DIAMANTES 💎", u: 4.89 }, { n: "1.166 DIAMANTES 💎", u: 9.00 }, { n: "2.398 DIAMANTES 💎", u: 19.00 }, 
-                { n: "6.160 DIAMANTES 💎", u: 48.00 }, { n: "TARJETA SEMANAL 🗓️", u: 1.95 }, { n: "TARJETA MENSUAL 📅", u: 9.00 }, 
-                { n: "PASE BOOYAH 🎟️", u: 3.50 }, { n: "PASE DE NIVEL 📈", u: 3.20 }
-            ],
-            "Netflix": [{ n: "PANTALLA NETFLIX 📺", u: 4.50 }],
-            "Roblox": [{ n: "400 ROBUX 🧸", u: 5.00 }, { n: "800 ROBUX 🧸", u: 10.00 }],
-            "Block Strike": [
-                { n: "51 MONEDAS 🪙", u: 0.50 }, { n: "105 MONEDAS 🪙", u: 1.00 }, { n: "320 MONEDAS 🪙", u: 2.95 }, 
-                { n: "540 MONEDAS 🪙", u: 4.80 }, { n: "1.100 MONEDAS 🪙", u: 9.50 }, { n: "2.260 MONEDAS 🪙", u: 18.00 }
-            ]
-        };
+        const blockstrikeProducts = [
+            { name: "51 🪙", usd: 0.52, bs: 343 },
+            { name: "105 🪙", usd: 1.00, bs: 660 },
+            { name: "320 🪙", usd: 2.95, bs: 1947 },
+            { name: "540 🪙", usd: 4.90, bs: 3234 },
+            { name: "1100 🪙", usd: 10.00, bs: 6600 },
+            { name: "2260 🪙", usd: 20.00, bs: 13200 },
+            { name: "5800 🪙", usd: 48.00, bs: 31680 },
+            { name: "PASE ÉLITE", usd: 4.15, bs: 2739 },
+            { name: "PASE ÉLITE PLUS", usd: 10.00, bs: 6600 },
+            { name: "PASE MEJORA", usd: 2.10, bs: 1386 }
+        ];
 
-        const avisos = {
-            "Netflix": "⚠️ Entrega de 1 a 24 horas. Para renovación debe avisar 1 día antes.",
-            "Roblox": "⚠️ La recarga de Robux es procesada por cuenta."
-        };
+        const netflixProducts = [
+            { name: "NETFLIX 1 PANTALLA", usd: 4.00, bs: 2640 }
+        ];
 
-        function formatBS(num) { return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "bs"; }
+        const robloxProducts = [
+            { name: "400 ROBUX", usd: 5.00, bs: 3300 },
+            { name: "800 ROBUX", usd: 10.00, bs: 6600 },
+            { name: "2000 ROBUX", usd: 25.00, bs: 16500 },
+            { name: "4500 ROBUX", usd: 50.00, bs: 33000 },
+            { name: "10000 ROBUX", usd: 100.00, bs: 66000 }
+        ];
 
-        function cambiarCategoria(cat, btn) {
-            categoriaActiva = cat;
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.add('opacity-50'));
-            btn.classList.remove('opacity-50');
-            const av = document.getElementById('aviso-especifico');
-            if(avisos[cat]) { av.innerHTML = `<p class="bg-red-500/10 text-red-500 text-[10px] font-bold p-3 rounded-xl mb-4 text-center uppercase italic border border-red-500/20">${avisos[cat]}</p>`; av.classList.remove('hidden'); }
-            else { av.classList.add('hidden'); }
-            
-            document.getElementById('grid-productos').innerHTML = productos[cat].map((i, idx) => {
-                const pBs = Math.round(i.u * TASA);
-                return `<div class="game-card" id="card-${idx}">
-                    <div class="flex items-center">
-                        <i class="fas fa-check-circle check-circle"></i>
-                        <div>
-                            <h4 class="product-name mb-1">${i.n}</h4>
-                            <div class="flex items-center gap-2">
-                                <span class="text-blue-500 font-black text-sm">${formatBS(pBs)}</span>
-                                <span class="text-gray-500 font-bold text-[10px]">($${i.u.toFixed(2)})</span>
-                            </div>
-                        </div>
-                    </div>
-                    <button onclick="seleccionar('${i.n}', ${pBs}, 'card-${idx}')" class="btn-action">ELEGIR</button>
-                </div>`;
-            }).join('');
-            
-            document.getElementById('campos-dinamicos').innerHTML = `<input type="text" id="d1" placeholder="${cat==='Roblox'?'CORREO':(cat==='Netflix'?'TELÉFONO':'ID JUGADOR')}" class="input-field font-bold w-full" oninput="validarID(this)">` + (cat === 'Roblox' ? `<input type="password" id="d2" placeholder="CONTRASEÑA" class="input-field font-bold w-full mt-2">` : '');
-            document.getElementById('seccion-pago').classList.add('hidden');
-        }
+        const codProducts = [
+            { name: "200 CP", usd: 3.00, bs: 1980 },
+            { name: "500 CP", usd: 7.00, bs: 4620 },
+            { name: "1000 CP", usd: 12.00, bs: 7920 },
+            { name: "2400 CP", usd: 28.00, bs: 18480 },
+            { name: "5000 CP", usd: 55.00, bs: 36300 },
+            { name: "PASE BATALLA", usd: 8.00, bs: 5280 }
+        ];
 
-        function seleccionar(n, pb, cardId) {
-            document.querySelectorAll('.game-card').forEach(c => c.classList.remove('selected'));
-            document.getElementById(cardId).classList.add('selected');
-            prodSeleccionado = { nombre: n, precio: pb };
-            aplicarDescuento();
-            document.getElementById('seccion-pago').classList.remove('hidden');
-            document.getElementById('seccion-pago').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function aplicarDescuento() {
-            if (!prodSeleccionado) return;
-            const cod = document.getElementById('input-descuento').value.trim().toUpperCase();
-            const fb = document.getElementById('feedback-cupon');
-            
-            if (cod === "GAMES") {
-                fb.classList.remove('hidden');
-                fb.innerHTML = `<span class="text-blue-500 animate-pulse italic">VERIFICANDO CUPÓN...</span>`;
-                setTimeout(() => { 
-                    fb.innerHTML = `<span class="text-yellow-500">CUPÓN VERIFICADO ✅ (-3%)</span>`;
-                    precioFinal = Math.round(prodSeleccionado.precio * 0.97);
-                    document.getElementById('monto-bs-display').innerText = formatBS(precioFinal);
-                    sndSuccess.play().catch(()=>{});
-                }, 800);
-            } else {
-                fb.classList.add('hidden');
-                precioFinal = prodSeleccionado.precio;
-                document.getElementById('monto-bs-display').innerText = formatBS(precioFinal);
+        // ==================== FUNCIÓN DE VERIFICACIÓN DE ID DE FREE FIRE ====================
+        async function verifyFreeFireId(uid, region = 'id') {
+            try {
+                const url = `https://wlx-demon-info.vercel.app/profile_info?uid=${uid}&region=${region}&key=FFwlx`;
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.success && data.AccountInfo) {
+                    const nickname = data.AccountInfo.AccountName || 'Desconocido';
+                    const playerRegion = data.AccountInfo.AccountRegion || region.toUpperCase();
+                    const level = data.AccountInfo.AccountLevel || '?';
+                    return {
+                        success: true,
+                        nickname: nickname,
+                        region: playerRegion,
+                        level: level,
+                        message: `✅ ${nickname} (Nivel ${level}) - Región: ${playerRegion}`
+                    };
+                } else {
+                    return {
+                        success: false,
+                        message: '❌ ID no encontrado. Verifica que sea correcto.'
+                    };
+                }
+            } catch (error) {
+                console.error('Error verificando ID:', error);
+                return {
+                    success: false,
+                    message: '⚠️ Error de conexión. El ID se guardará igualmente.'
+                };
             }
         }
 
-        function validarID(input) {
-            const fb = document.getElementById('feedback-id');
-            if(input.value.length >= 8 && (categoriaActiva === "Free Fire" || categoriaActiva === "Block Strike")) {
-                fb.classList.remove('hidden');
-                fb.innerHTML = `<span class="text-blue-500 animate-pulse italic">BUSCANDO ID...</span>`;
-                setTimeout(() => { fb.innerHTML = `<span class="text-green-500">ID VERIFICADO ✅</span>`; sndSuccess.play().catch(()=>{}); }, 1000);
-            } else fb.classList.add('hidden');
+        function renderProducts(containerId, products) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = '';
+            products.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.onclick = () => selectProduct(p.name, p.usd, p.bs, detectGame(p.name));
+                card.innerHTML = `
+                    <div class="product-name">${p.name}</div>
+                    <div class="product-price-bs">${p.bs} Bs</div>
+                    <div class="product-price-usd">$${p.usd} USD</div>
+                    <button class="choose-btn">ELEGIR</button>
+                `;
+                container.appendChild(card);
+            });
         }
 
-        function copiarDato(texto) {
-            navigator.clipboard.writeText(texto);
-            const toast = document.getElementById('toast-copy');
-            toast.classList.remove('hidden');
-            setTimeout(() => toast.classList.add('hidden'), 1500);
+        function detectGame(productName) {
+            const name = productName.toLowerCase();
+            if (name.includes('pase') || name.includes('semanal') || name.includes('mensual') || name.includes('booyah') || (!isNaN(parseInt(name)) && name.length <= 6)) return 'freefire';
+            if (name.includes('netflix')) return 'netflix';
+            if (name.includes('robux')) return 'roblox';
+            if (name.includes('🪙') || name.includes('pase élite') || name.includes('pase mejora')) return 'blockstrike';
+            if (name.includes('cp') || name.includes('pase batalla')) return 'callofduty';
+            return 'freefire';
         }
 
-        function copiarMonto() { copiarDato(Math.round(precioFinal).toString()); }
-        function abrirModal(id) { document.getElementById(id).style.display = 'block'; if(id==='modal-historial') mostrarHistorial(); }
-        function cerrarModal(id) { document.getElementById(id).style.display = 'none'; }
+        renderProducts('freefire-products', freefireProducts);
+        renderProducts('passes-products', passesProducts);
+        renderProducts('blockstrike-products', blockstrikeProducts);
+        renderProducts('netflix-products', netflixProducts);
+        renderProducts('roblox-products', robloxProducts);
+        renderProducts('cod-products', codProducts);
 
-        function mostrarHistorial() {
-            const h = JSON.parse(localStorage.getItem('pedidos') || "[]");
-            document.getElementById('lista-historial').innerHTML = h.map(p => `<div class="bg-[#111827] p-4 rounded-xl mb-2 border-l-4 border-blue-500"><p class="text-[10px] text-gray-500 uppercase">${p.fecha}</p><p class="text-white font-bold text-xs">${p.prod}</p><p class="text-green-500 font-black text-xs">${p.monto}</p></div>`).join('') || '<p class="text-center text-gray-500 py-4 text-xs italic">No hay historial.</p>';
+        function showSection(sectionId) {
+            document.querySelectorAll('.game-section').forEach(s => s.classList.remove('active-section'));
+            document.getElementById(sectionId).classList.add('active-section');
+            document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+            document.querySelector(`.menu-item[data-section="${sectionId}"]`).classList.add('active');
         }
 
-        function limpiarHistorial() { localStorage.removeItem('pedidos'); mostrarHistorial(); }
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', () => showSection(item.dataset.section));
+        });
 
-        function finalizarYEnviar() {
-            const d1 = document.getElementById('d1').value, ref = document.getElementById('ref-pago').value;
-            if(!d1 || !ref) return alert("⚠️ Completa tus datos");
-            let h = JSON.parse(localStorage.getItem('pedidos') || "[]");
-            h.unshift({ prod: prodSeleccionado.nombre, monto: formatBS(precioFinal), fecha: new Date().toLocaleDateString() });
-            localStorage.setItem('pedidos', JSON.stringify(h.slice(0, 10)));
-            const extra = (document.getElementById('d2')) ? `\n🔑 Pass: ${document.getElementById('d2').value}` : "";
-            const msg = `*NUEVO PEDIDO*\nProd: ${prodSeleccionado.nombre}\nMonto: ${formatBS(precioFinal)}\nDato: ${d1}${extra}\nRef: ${ref}`;
-            window.open(`https://wa.me/584228242411?text=${encodeURIComponent(msg)}`, '_blank');
+        let selectedProduct = { name: '', usd: 0, bs: 0, game: '' };
+        let currentUserData = '';
+        let currentReference = '';
+        let verifiedNickname = '';
+
+        function selectProduct(name, usd, bs, game) {
+            selectedProduct = { name, usd, bs, game };
+            
+            document.getElementById('dynamicAmount').innerText = bs + ' Bs';
+            
+            const clientForm = document.getElementById('clientForm');
+            clientForm.style.display = 'block';
+            
+            const selectedProductInfo = document.getElementById('selectedProductInfo');
+            selectedProductInfo.innerHTML = `✅ <strong>Producto seleccionado:</strong> ${name} | ${bs} Bs ($${usd} USD)`;
+            
+            const dynamicFormFields = document.getElementById('dynamicFormFields');
+            let fieldsHtml = '';
+            
+            if (game === 'freefire') {
+                fieldsHtml = `
+                    <div class="form-group">
+                        <label>🔑 ID de Free Fire *</label>
+                        <input type="text" id="gameId" placeholder="Ej: 123456789" required>
+                        <div id="verifyResult" class="verify-result"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>📝 Referencia del pago *</label>
+                        <input type="text" id="reference" placeholder="Número de referencia de tu transferencia" required>
+                    </div>
+                `;
+            } else if (game === 'blockstrike') {
+                fieldsHtml = `
+                    <div class="form-group">
+                        <label>🎮 ID de Block Strike *</label>
+                        <input type="text" id="gameId" placeholder="Tu ID de Block Strike" required>
+                    </div>
+                    <div class="form-group">
+                        <label>📝 Referencia del pago *</label>
+                        <input type="text" id="reference" placeholder="Número de referencia de tu transferencia" required>
+                    </div>
+                `;
+            } else if (game === 'roblox') {
+                fieldsHtml = `
+                    <div class="form-group">
+                        <label>📧 Correo de Roblox *</label>
+                        <input type="email" id="robloxEmail" placeholder="correo@ejemplo.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>👤 Usuario de Roblox *</label>
+                        <input type="text" id="robloxUser" placeholder="Nombre de usuario" required>
+                    </div>
+                    <div class="form-group">
+                        <label>📝 Referencia del pago *</label>
+                        <input type="text" id="reference" placeholder="Número de referencia de tu transferencia" required>
+                    </div>
+                `;
+            } else if (game === 'netflix') {
+                fieldsHtml = `
+                    <div class="form-group">
+                        <label>📱 Teléfono para la cuenta Netflix *</label>
+                        <input type="tel" id="netflixPhone" placeholder="04241234567" required>
+                    </div>
+                    <div class="form-group">
+                        <label>📝 Referencia del pago *</label>
+                        <input type="text" id="reference" placeholder="Número de referencia de tu transferencia" required>
+                    </div>
+                `;
+            } else {
+                fieldsHtml = `
+                    <div class="form-group">
+                        <label>🎮 ID de Call of Duty *</label>
+                        <input type="text" id="gameId" placeholder="Tu ID de Call of Duty" required>
+                    </div>
+                    <div class="form-group">
+                        <label>📝 Referencia del pago *</label>
+                        <input type="text" id="reference" placeholder="Número de referencia de tu transferencia" required>
+                    </div>
+                `;
+            }
+            
+            dynamicFormFields.innerHTML = fieldsHtml;
+            
+            // Si es Free Fire, agregar evento de verificación
+            if (game === 'freefire') {
+                const idInput = document.getElementById('gameId');
+                if (idInput) {
+                    idInput.addEventListener('blur', async function() {
+                        const uid = this.value.trim();
+                        const resultDiv = document.getElementById('verifyResult');
+                        
+                        if (!uid) {
+                            resultDiv.innerHTML = '';
+                            resultDiv.className = 'verify-result';
+                            verifiedNickname = '';
+                            return;
+                        }
+                        
+                        resultDiv.innerHTML = '🔄 Verificando ID...';
+                        resultDiv.className = 'verify-result loading';
+                        
+                        const regions = ['id', 'sg', 'bd', 'ind', 'br', 'th', 'vn', 'pk'];
+                        let verified = false;
+                        
+                        for (const region of regions) {
+                            const result = await verifyFreeFireId(uid, region);
+                            if (result.success) {
+                                verifiedNickname = result.nickname;
+                                resultDiv.innerHTML = result.message;
+                                resultDiv.className = 'verify-result success';
+                                verified = true;
+                                break;
+                            }
+                        }
+                        
+                        if (!verified) {
+                            verifiedNickname = '';
+                            resultDiv.innerHTML = '❌ ID no encontrado. Verifica que sea correcto o inténtalo de nuevo.';
+                            resultDiv.className = 'verify-result error';
+                        }
+                    });
+                }
+            }
+            
+            document.getElementById('orderSummary').style.display = 'none';
+            document.getElementById('sendOrderBtn').style.display = 'none';
+            document.getElementById('previewOrderBtn').style.display = 'block';
+            
+            setTimeout(() => {
+                document.getElementById('paymentSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
         }
 
-        window.onload = () => cambiarCategoria('Free Fire', document.querySelector('.tab-btn'));
+        document.getElementById('previewOrderBtn').addEventListener('click', function() {
+            let userData = '';
+            
+            if (selectedProduct.game === 'freefire') {
+                let id = document.getElementById('gameId')?.value || '';
+                if (!id) { alert('❌ Ingresa tu ID de Free Fire'); return; }
+                const displayName = verifiedNickname ? ` (${verifiedNickname})` : '';
+                userData = id + displayName;
+                currentUserData = `ID Free Fire: ${id}${verifiedNickname ? ` | Nick: ${verifiedNickname}` : ''}`;
+            } else if (selectedProduct.game === 'blockstrike') {
+                let id = document.getElementById('gameId')?.value || '';
+                if (!id) { alert('❌ Ingresa tu ID de Block Strike'); return; }
+                userData = id;
+                currentUserData = `ID Block Strike: ${id}`;
+            } else if (selectedProduct.game === 'roblox') {
+                let robloxEmail = document.getElementById('robloxEmail')?.value || '';
+                let robloxUser = document.getElementById('robloxUser')?.value || '';
+                if (!robloxEmail) { alert('❌ Ingresa tu correo de Roblox'); return; }
+                if (!robloxUser) { alert('❌ Ingresa tu usuario de Roblox'); return; }
+                userData = `${robloxEmail} / ${robloxUser}`;
+                currentUserData = `Correo: ${robloxEmail} | Usuario: ${robloxUser}`;
+            } else if (selectedProduct.game === 'netflix') {
+                let phone = document.getElementById('netflixPhone')?.value || '';
+                if (!phone) { alert('❌ Ingresa tu teléfono para Netflix'); return; }
+                userData = phone;
+                currentUserData = `Teléfono: ${phone}`;
+            } else {
+                let id = document.getElementById('gameId')?.value || '';
+                if (!id) { alert('❌ Ingresa tu ID de Call of Duty'); return; }
+                userData = id;
+                currentUserData = `ID Call of Duty: ${id}`;
+            }
+            
+            let reference = document.getElementById('reference')?.value || '';
+            if (!reference) { alert('❌ Ingresa la referencia del pago'); return; }
+            currentReference = reference;
+            
+            document.getElementById('summaryProduct').innerText = `${selectedProduct.name} (${selectedProduct.game.toUpperCase()})`;
+            document.getElementById('summaryAmount').innerText = `${selectedProduct.bs} Bs ($${selectedProduct.usd} USD)`;
+            document.getElementById('summaryUserData').innerText = userData;
+            document.getElementById('summaryReference').innerText = reference;
+            
+            document.getElementById('orderSummary').style.display = 'block';
+            document.getElementById('sendOrderBtn').style.display = 'block';
+            this.style.display = 'none';
+        });
+
+        document.getElementById('sendOrderBtn').addEventListener('click', function() {
+            const mensaje = `🛒 *NUEVO PEDIDO*%0A%0A🎮 *Juego:* ${selectedProduct.game.toUpperCase()}%0A📦 *Producto:* ${selectedProduct.name}%0A💰 *Monto:* ${selectedProduct.bs} Bs ($${selectedProduct.usd} USD)%0A%0A📝 *Datos del cliente:*%0A${currentUserData}%0A🏦 *Referencia de pago:* ${currentReference}`;
+            
+            window.open(`https://wa.me/584264696162?text=${mensaje}`, '_blank');
+            alert('✅ Pedido enviado. En breve recibirás respuesta por WhatsApp.');
+            
+            document.getElementById('clientForm').style.display = 'none';
+            document.getElementById('dynamicAmount').innerText = '[Selecciona un producto]';
+            document.getElementById('orderSummary').style.display = 'none';
+            document.getElementById('sendOrderBtn').style.display = 'none';
+            document.getElementById('previewOrderBtn').style.display = 'block';
+            verifiedNickname = '';
+        });
+
+        const copyBtn = document.getElementById('copyBankBtn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', function() {
+                const montoElement = document.getElementById('dynamicAmount');
+                let montoTexto = montoElement ? montoElement.innerText : '[No seleccionado]';
+                const textoCompleto = `Banco: Venezuela (0102)\nCédula: 32824869\nTeléfono: 04228242411\nMonto: ${montoTexto}`;
+                navigator.clipboard.writeText(textoCompleto).then(() => {
+                    const originalText = this.innerText;
+                    this.innerText = '✅ ¡Todo copiado!';
+                    setTimeout(() => {
+                        this.innerText = originalText;
+                    }, 2000);
+                });
+            });
+        }
     </script>
 </body>
 </html>
