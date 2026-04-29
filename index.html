@@ -3,826 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Recargas Games - Free Fire, Roblox, Netflix y más</title>
+    <title>Recargas Games - Oficial</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #0a0f1e 0%, #0f172a 100%); 
+            color: #fff; 
+            padding: 20px; 
+            min-height: 100vh;
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0f1e 0%, #0f172a 100%);
-            color: #fff;
-            padding: 20px;
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header { text-align: center; margin-bottom: 30px; padding: 20px; }
+        .header h1 { 
+            font-size: 2.2rem; 
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4); 
+            -webkit-background-clip: text; 
+            background-clip: text; 
+            color: transparent; 
+            font-weight: 800;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 30px;
-        }
-
-        .header h1 {
-            font-size: 2rem;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .header p {
-            color: #94a3b8;
-            margin-top: 10px;
-        }
-
-        .game-menu {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            background: rgba(30, 41, 59, 0.6);
-            padding: 15px;
-            border-radius: 50px;
-        }
-
-        .menu-item {
-            background: rgba(15, 23, 42, 0.8);
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: bold;
-            color: #94a3b8;
-            cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
-
-        .menu-item:hover, .menu-item.active {
-            background: #4ecdc4;
-            color: #0f172a;
-        }
-
-        .game-section {
-            background: rgba(30, 41, 59, 0.7);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 30px;
-            display: none;
-        }
-
-        .game-section.active-section {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .game-title {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            border-left: 4px solid;
-            padding-left: 15px;
-        }
-
-        .game-title.freefire { border-color: #ff6b35; }
-        .game-title.blockstrike { border-color: #00ff88; }
-        .game-title.netflix { border-color: #e50914; }
-        .game-title.roblox { border-color: #ff4365; }
-        .game-title.callofduty { border-color: #ffb347; }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
-        }
-
-        .product-card {
-            background: rgba(15, 23, 42, 0.9);
-            border-radius: 12px;
-            padding: 15px 10px;
-            text-align: center;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: transform 0.2s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-3px);
-            border-color: #4ecdc4;
-        }
-
-        .product-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .product-price-bs {
-            color: #fbbf24;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin: 8px 0;
-        }
-
-        .product-price-usd {
-            color: #64748b;
-            font-size: 0.7rem;
-            margin-bottom: 10px;
-        }
-
-        .choose-btn {
-            background: transparent;
-            border: 1px solid #4ecdc4;
-            color: #4ecdc4;
-            padding: 6px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            width: 100%;
-            transition: 0.3s;
-        }
-
-        .choose-btn:hover {
-            background: #4ecdc4;
-            color: #0f172a;
-        }
-
-        .warning-box {
-            background: rgba(245, 158, 11, 0.15);
-            border-left: 4px solid #f59e0b;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            font-size: 0.9rem;
-        }
-
-        .warning-box.roblox-msg {
-            border-left-color: #ff4365;
-            background: rgba(255, 67, 101, 0.1);
-        }
-
-        .warning-box.netflix-msg {
-            border-left-color: #e50914;
-            background: rgba(229, 9, 20, 0.1);
-        }
-
-        .payment-section {
-            background: rgba(30, 41, 59, 0.7);
-            border-radius: 20px;
-            padding: 25px;
-            margin-top: 30px;
-        }
-
-        .payment-title {
-            font-size: 1.8rem;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #4ecdc4;
-        }
-
-        .payment-subtitle {
-            text-align: center;
-            color: #fbbf24;
-            margin-bottom: 25px;
-        }
-
-        .payment-card {
-            background: rgba(15, 23, 42, 0.9);
-            border-radius: 20px;
-            padding: 20px;
-            max-width: 400px;
-            margin: 0 auto;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .payment-card h3 {
-            color: #fbbf24;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .bank-details {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            padding: 12px;
-            margin: 15px 0;
-        }
-
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .detail-label {
-            color: #94a3b8;
-        }
-
-        .detail-value {
-            font-family: monospace;
-        }
-
-        .copy-all-btn {
-            background: linear-gradient(90deg, #4ecdc4, #2dd4bf);
-            border: none;
-            color: #0f172a;
-            padding: 12px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-        }
-
-        .client-form {
-            background: rgba(15, 23, 42, 0.9);
-            border-radius: 20px;
-            padding: 20px;
-            margin-top: 20px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: none;
-        }
-
-        .client-form h3 {
-            color: #4ecdc4;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #94a3b8;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #334155;
-            background: #0f172a;
-            color: white;
-            font-size: 1rem;
-        }
-
-        /* Estilo para el resultado de verificación de ID */
-        .verify-result {
-            margin-top: 8px;
-            padding: 8px;
-            border-radius: 8px;
+        
+        .game-menu { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 30px; }
+        .menu-item { 
+            background: rgba(255, 255, 255, 0.05); 
+            padding: 10px 22px; 
+            border-radius: 40px; 
+            font-weight: bold; 
+            color: #94a3b8; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            text-transform: uppercase; 
             font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        .verify-result.success {
-            background: rgba(78, 205, 196, 0.2);
-            border: 1px solid #4ecdc4;
-            color: #4ecdc4;
-        }
-
-        .verify-result.error {
-            background: rgba(239, 68, 68, 0.2);
-            border: 1px solid #ef4444;
-            color: #ef4444;
-        }
-
-        .verify-result.loading {
-            background: rgba(255, 255, 255, 0.1);
-            color: #94a3b8;
-        }
-
-        /* RESUMEN DEL PEDIDO */
-        .order-summary {
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid #4ecdc4;
-        }
-
-        .order-summary h4 {
-            color: #4ecdc4;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .order-summary p {
-            margin: 5px 0;
-            font-size: 0.9rem;
-        }
-
-        .send-order-btn {
-            background: linear-gradient(90deg, #4ecdc4, #2dd4bf);
-            border: none;
-            color: #0f172a;
-            padding: 12px;
-            border-radius: 12px;
-            cursor: pointer;
+        .menu-item.active { background: #4ecdc4; color: #0f172a; border-color: #4ecdc4; }
+        
+        .game-section { display: none; padding: 10px 0; }
+        .game-section.active-section { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .game-title { 
+            font-size: 1.5rem; 
+            margin: 20px 0; 
+            border-left: 5px solid #4ecdc4; 
+            padding-left: 15px; 
             font-weight: bold;
-            width: 100%;
-            margin-top: 10px;
-            font-size: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .products-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 20px; 
         }
 
-        .selected-product-info {
-            background: rgba(78, 205, 196, 0.2);
-            border-radius: 12px;
-            padding: 12px;
-            text-align: center;
-            margin-bottom: 15px;
+        .product-card { 
+            background: rgba(255, 255, 255, 0.03); 
+            border-radius: 24px; 
+            padding: 25px 15px; 
+            text-align: center; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s;
+        }
+        .product-card:hover { 
+            background: rgba(78, 205, 196, 0.05); 
+            border-color: #4ecdc4;
+            transform: translateY(-5px);
+        }
+
+        .product-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 5px; }
+        .product-price-bs { color: #fbbf24; font-size: 1.4rem; font-weight: bold; margin: 10px 0; }
+        .product-price-usd { color: #64748b; font-size: 0.85rem; margin-bottom: 15px; }
+        
+        .choose-btn { 
+            background: transparent; 
+            border: 1.5px solid #4ecdc4; 
+            color: #4ecdc4; 
+            padding: 10px 25px; 
+            border-radius: 30px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            width: 90%;
+            transition: 0.3s;
+        }
+
+        .payment-card { 
+            background: rgba(15, 23, 42, 0.9); 
+            border-radius: 20px; 
+            padding: 25px; 
+            max-width: 400px; 
+            margin: 40px auto; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .detail-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 15px 0; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+        }
+        .detail-label { color: #718096; font-size: 0.9rem; }
+        .detail-value { color: #fff; font-weight: bold; font-size: 1.1rem; }
+        #dynamicAmount { color: #4ecdc4; }
+        
+        .copy-all-btn { 
+            background: transparent; 
+            border: 2px solid #ed8936; 
+            color: #ed8936; 
+            width: 100%; 
+            padding: 15px; 
+            border-radius: 15px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            margin-top: 15px;
+        }
+
+        .client-form { 
+            background: rgba(15, 23, 42, 0.9); 
+            padding: 25px; 
+            border-radius: 20px; 
+            max-width: 450px; 
+            margin: 20px auto; 
+            display: none; 
             border: 1px solid #4ecdc4;
         }
-
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #64748b;
-            font-size: 0.8rem;
+        .form-group input { 
+            width: 100%; 
+            padding: 12px; 
+            margin-top: 8px;
+            border-radius: 10px; 
+            border: 1px solid #334155; 
+            background: #0a0f1e; 
+            color: white; 
         }
-
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 1000;
-            transition: transform 0.3s, background-color 0.3s;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            background-color: #128C7E;
-        }
-
-        html {
-            scroll-behavior: smooth;
+        .send-order-btn { 
+            background: #4ecdc4; 
+            border: none; 
+            color: #0f172a; 
+            padding: 15px; 
+            border-radius: 12px; 
+            font-weight: bold; 
+            width: 100%; 
+            cursor: pointer;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>🎮 RECARGAS GAMES</h1>
-            <p>OPERADORES EN LÍNEA</p>
-        </div>
+        <div class="header"><h1>🎮 RECARGAS GAMES</h1><p>OPERADORES EN LÍNEA</p></div>
 
         <div class="game-menu">
             <div class="menu-item active" data-section="freefire">FREE FIRE</div>
+            <div class="menu-item" data-section="blockstrike">BLOCK STRIKE</div>
             <div class="menu-item" data-section="netflix">NETFLIX</div>
             <div class="menu-item" data-section="roblox">ROBLOX</div>
-            <div class="menu-item" data-section="blockstrike">BLOCK STRIKE</div>
-            <div class="menu-item" data-section="callofduty">CALL OF DUTY</div>
         </div>
 
         <div id="freefire" class="game-section active-section">
-            <div class="game-title freefire">🔥 FREE FIRE - DIAMANTES</div>
+            <div class="game-title">🔥 DIAMANTES Y PASES FF</div>
             <div class="products-grid" id="freefire-products"></div>
-            <div class="game-title freefire" style="margin-top: 30px;">🎟️ TARJETAS Y PASES</div>
-            <div class="products-grid" id="passes-products"></div>
-        </div>
-
-        <div id="netflix" class="game-section">
-            <div class="game-title netflix">🎬 NETFLIX</div>
-            <div class="products-grid" id="netflix-products"></div>
-            <div class="warning-box netflix-msg">⚠️ Usa la cuenta con responsabilidad. No compartas la contraseña.</div>
-        </div>
-
-        <div id="roblox" class="game-section">
-            <div class="game-title roblox">🧸 ROBLOX</div>
-            <div class="products-grid" id="roblox-products"></div>
-            <div class="warning-box roblox-msg">⚠️ La recarga es por cuenta. Necesitarás tu correo y usuario de Roblox.</div>
         </div>
 
         <div id="blockstrike" class="game-section">
-            <div class="game-title blockstrike">🔫 BLOCK STRIKE</div>
+            <div class="game-title">🔫 BLOCK STRIKE</div>
             <div class="products-grid" id="blockstrike-products"></div>
         </div>
 
-        <div id="callofduty" class="game-section">
-            <div class="game-title callofduty">💥 CALL OF DUTY</div>
-            <div class="products-grid" id="cod-products"></div>
+        <div id="netflix" class="game-section">
+            <div class="game-title">🎬 NETFLIX</div>
+            <div class="products-grid" id="netflix-products"></div>
         </div>
 
-        <div class="payment-section" id="paymentSection">
-            <div class="payment-title">💸 DATOS DE PAGO</div>
-            <div class="payment-subtitle">🔹 Banco de Venezuela 🔹</div>
-            <div class="payment-card">
-                <h3>🏦 Transferencia Bancaria</h3>
-                <div class="bank-details">
-                    <div class="detail-row"><span class="detail-label">Banco</span><span class="detail-value">Venezuela (0102)</span></div>
-                    <div class="detail-row"><span class="detail-label">Cédula</span><span class="detail-value">32824869</span></div>
-                    <div class="detail-row"><span class="detail-label">Teléfono</span><span class="detail-value">04228242411</span></div>
-                    <div class="detail-row"><span class="detail-label">Monto</span><span class="detail-value" id="dynamicAmount">[Selecciona un producto]</span></div>
-                </div>
-                <button class="copy-all-btn" id="copyBankBtn">📋 Copiar todos los datos</button>
-            </div>
-
-            <div class="client-form" id="clientForm">
-                <h3>📝 COMPLETA TUS DATOS</h3>
-                <div class="selected-product-info" id="selectedProductInfo"></div>
-                
-                <!-- RESUMEN DEL PEDIDO (sin código de seguimiento) -->
-                <div class="order-summary" id="orderSummary" style="display: none;">
-                    <h4>📋 RESUMEN DEL PEDIDO</h4>
-                    <p><strong>Producto:</strong> <span id="summaryProduct"></span></p>
-                    <p><strong>Monto:</strong> <span id="summaryAmount"></span></p>
-                    <p><strong>ID/Usuario:</strong> <span id="summaryUserData"></span></p>
-                    <p><strong>Referencia:</strong> <span id="summaryReference"></span></p>
-                </div>
-                
-                <div id="dynamicFormFields"></div>
-                <button class="send-order-btn" id="previewOrderBtn" style="display: none;">👁️ VER RESUMEN DEL PEDIDO</button>
-                <button class="send-order-btn" id="sendOrderBtn" style="display: none;">✅ CONFIRMAR Y ENVIAR</button>
-            </div>
+        <div id="roblox" class="game-section">
+            <div class="game-title">🧸 ROBLOX</div>
+            <div class="products-grid" id="roblox-products"></div>
         </div>
 
-        <div class="footer">
-            <p>© 2025 RECARGAS GAMES - Productos digitales, sin devolución</p>
+        <div class="payment-card" id="pagoModulo">
+            <div class="detail-row"><div><span class="detail-label">Banco</span><div class="detail-value">Venezuela (0102)</div></div></div>
+            <div class="detail-row"><div><span class="detail-label">Teléfono</span><div class="detail-value">04228242411</div></div></div>
+            <div class="detail-row"><div><span class="detail-label">Cédula</span><div class="detail-value">32824869</div></div></div>
+            <div class="detail-row"><div><span class="detail-label">Monto</span><div class="detail-value" id="dynamicAmount">[Selecciona]</div></div></div>
+            <button class="copy-all-btn" id="btnCopiarTodo">📋 Copiar todos los datos</button>
+        </div>
+
+        <div class="client-form" id="clientForm">
+            <h3 style="text-align: center;">📝 DATOS DEL PEDIDO</h3>
+            <div id="dynamicFields"></div>
+            <button class="send-order-btn" id="btnEnviar">ENVIAR A WHATSAPP</button>
         </div>
     </div>
 
-    <a href="https://wa.me/584264696162" class="whatsapp-float" target="_blank">
-        💬
-    </a>
-
     <script>
-           // ==================== PRECIOS ====================
-        const freefireProducts = [
-            { name: "110", usd: 0.97, bs: 632 },
-            { name: "220", usd: 1.96, bs: 1264 },
-            { name: "341", usd: 3.20, bs: 1995 },
-            { name: "572", usd: 4.89, bs: 2985 },
-            { name: "1.166", usd: 9.00, bs: 5550 },
-            { name: "1.738", usd: 13.50, bs: 8549 },
-            { name: "2.398", usd: 19.00, bs: 10800 },
-            { name: "6.160", usd: 48.00, bs: 28200 }
-        ];
+        const tasa = 650;
+        const productos = {
+            freefire: [
+                { name: "110💎", usd: 0.97 }, { name: "220💎", usd: 1.96 },
+                { name: "341💎", usd: 3.20 }, { name: "572💎", usd: 4.89 },
+                { name: "1166💎", usd: 9.00 }, { name: "2398💎", usd: 19.00 },
+                { name: "6160💎", usd: 48.00 },
+                { name: "T. Semanal básica", usd: 0.73 }, { name: "T. Semanal", usd: 2.50 },
+                { name: "T. Mensual", usd: 11.00 }, { name: "Pase Booyah", usd: 3.50 },
+                { name: "Pase de Nivel", usd: 4.00 }
+            ],
+            blockstrike: [
+                { name: "51🪙", usd: 0.52 }, { name: "105🪙", usd: 1.00 },
+                { name: "320🪙", usd: 2.95 }, { name: "540🪙", usd: 4.90 },
+                { name: "1100🪙", usd: 10.00 }, { name: "2260🪙", usd: 20.00 },
+                { name: "5800🪙", usd: 48.00 },
+                { name: "Pase elite", usd: 4.15 }, { name: "Pase elite plus", usd: 10.00 },
+                { name: "Pase de mejora", usd: 2.10 }
+            ],
+            netflix: [{ name: "Pantalla Netflix", usd: 4.00 }],
+            roblox: [{ name: "400 ROBUX", usd: 5.00 }, { name: "800 ROBUX", usd: 10.00 }]
+        };
 
-        const passesProducts = [
-            { name: "PASE B", usd: 4.05, bs: 2677 },
-            { name: "SEMANAL BÁSICA", usd: 0.68, bs: 447 },
-            { name: "SEMANAL", usd: 2.50, bs: 1650 },
-            { name: "MENSUAL", usd: 11.00, bs: 7260 },
-            { name: "PASE BOOYAH", usd: 3.50, bs: 2310 },
-            { name: "PASE DE NIVEL", usd: 4.00, bs: 2640 }
-        ];
+        let prodSel = null;
+        let nickFF = "";
 
-        const blockstrikeProducts = [
-            { name: "51 🪙", usd: 0.52, bs: 343 },
-            { name: "105 🪙", usd: 1.00, bs: 660 },
-            { name: "320 🪙", usd: 2.95, bs: 1947 },
-            { name: "540 🪙", usd: 4.90, bs: 3234 },
-            { name: "1100 🪙", usd: 10.00, bs: 6600 },
-            { name: "2260 🪙", usd: 20.00, bs: 13200 },
-            { name: "5800 🪙", usd: 48.00, bs: 31680 },
-            { name: "PASE ÉLITE", usd: 4.15, bs: 2739 },
-            { name: "PASE ÉLITE PLUS", usd: 10.00, bs: 6600 },
-            { name: "PASE MEJORA", usd: 2.10, bs: 1386 }
-        ];
-
-        const netflixProducts = [
-            { name: "NETFLIX 1 PANTALLA", usd: 4.00, bs: 2640 }
-        ];
-
-        const robloxProducts = [
-            { name: "400 ROBUX", usd: 5.00, bs: 3300 },
-            { name: "800 ROBUX", usd: 10.00, bs: 6600 },
-            { name: "2000 ROBUX", usd: 25.00, bs: 16500 },
-            { name: "4500 ROBUX", usd: 50.00, bs: 33000 },
-            { name: "10000 ROBUX", usd: 100.00, bs: 66000 }
-        ];
-
-        const codProducts = [
-            { name: "200 CP", usd: 3.00, bs: 1980 },
-            { name: "500 CP", usd: 7.00, bs: 4620 },
-            { name: "1000 CP", usd: 12.00, bs: 7920 },
-            { name: "2400 CP", usd: 28.00, bs: 18480 },
-            { name: "5000 CP", usd: 55.00, bs: 36300 },
-            { name: "PASE BATALLA", usd: 8.00, bs: 5280 }
-        ];
-
-        // ==================== FUNCIÓN DE VERIFICACIÓN DE ID DE FREE FIRE ====================
-        async function verifyFreeFireId(uid, region = 'id') {
-            try {
-                const url = `https://wlx-demon-info.vercel.app/profile_info?uid=${uid}&region=${region}&key=FFwlx`;
-                const response = await fetch(url);
-                const data = await response.json();
-                
-                if (data.success && data.AccountInfo) {
-                    const nickname = data.AccountInfo.AccountName || 'Desconocido';
-                    const playerRegion = data.AccountInfo.AccountRegion || region.toUpperCase();
-                    const level = data.AccountInfo.AccountLevel || '?';
-                    return {
-                        success: true,
-                        nickname: nickname,
-                        region: playerRegion,
-                        level: level,
-                        message: `✅ ${nickname} (Nivel ${level}) - Región: ${playerRegion}`
-                    };
-                } else {
-                    return {
-                        success: false,
-                        message: '❌ ID no encontrado. Verifica que sea correcto.'
-                    };
-                }
-            } catch (error) {
-                console.error('Error verificando ID:', error);
-                return {
-                    success: false,
-                    message: '⚠️ Error de conexión. El ID se guardará igualmente.'
-                };
-            }
-        }
-
-        function renderProducts(containerId, products) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            container.innerHTML = '';
-            products.forEach(p => {
+        Object.keys(productos).forEach(id => {
+            const grid = document.getElementById(`${id}-products`);
+            productos[id].forEach(p => {
+                const bs = Math.ceil(p.usd * tasa);
                 const card = document.createElement('div');
                 card.className = 'product-card';
-                card.onclick = () => selectProduct(p.name, p.usd, p.bs, detectGame(p.name));
-                card.innerHTML = `
-                    <div class="product-name">${p.name}</div>
-                    <div class="product-price-bs">${p.bs} Bs</div>
-                    <div class="product-price-usd">$${p.usd} USD</div>
-                    <button class="choose-btn">ELEGIR</button>
-                `;
-                container.appendChild(card);
+                card.onclick = () => seleccionar(p, id, bs);
+                card.innerHTML = `<div class="product-name">${p.name}</div><div class="product-price-bs">${bs} Bs</div><div class="product-price-usd">$${p.usd} USD</div><button class="choose-btn">ELEGIR</button>`;
+                grid.appendChild(card);
             });
-        }
-
-        function detectGame(productName) {
-            const name = productName.toLowerCase();
-            if (name.includes('pase') || name.includes('semanal') || name.includes('mensual') || name.includes('booyah') || (!isNaN(parseInt(name)) && name.length <= 6)) return 'freefire';
-            if (name.includes('netflix')) return 'netflix';
-            if (name.includes('robux')) return 'roblox';
-            if (name.includes('🪙') || name.includes('pase élite') || name.includes('pase mejora')) return 'blockstrike';
-            if (name.includes('cp') || name.includes('pase batalla')) return 'callofduty';
-            return 'freefire';
-        }
-
-        renderProducts('freefire-products', freefireProducts);
-        renderProducts('passes-products', passesProducts);
-        renderProducts('blockstrike-products', blockstrikeProducts);
-        renderProducts('netflix-products', netflixProducts);
-        renderProducts('roblox-products', robloxProducts);
-        renderProducts('cod-products', codProducts);
-
-        function showSection(sectionId) {
-            document.querySelectorAll('.game-section').forEach(s => s.classList.remove('active-section'));
-            document.getElementById(sectionId).classList.add('active-section');
-            document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
-            document.querySelector(`.menu-item[data-section="${sectionId}"]`).classList.add('active');
-        }
-
-        document.querySelectorAll('.menu-item').forEach(item => {
-            item.addEventListener('click', () => showSection(item.dataset.section));
         });
 
-        let selectedProduct = { name: '', usd: 0, bs: 0, game: '' };
-        let currentUserData = '';
-        let currentReference = '';
-        let verifiedNickname = '';
+        document.querySelectorAll('.menu-item').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelectorAll('.game-section').forEach(s => s.classList.remove('active-section'));
+                document.getElementById(btn.dataset.section).classList.add('active-section');
+                document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+                btn.classList.add('active');
+            };
+        });
 
-        function selectProduct(name, usd, bs, game) {
-            selectedProduct = { name, usd, bs, game };
-            
+        function seleccionar(p, game, bs) {
+            prodSel = { ...p, game, bs };
             document.getElementById('dynamicAmount').innerText = bs + ' Bs';
-            
-            const clientForm = document.getElementById('clientForm');
-            clientForm.style.display = 'block';
-            
-            const selectedProductInfo = document.getElementById('selectedProductInfo');
-            selectedProductInfo.innerHTML = `✅ <strong>Producto seleccionado:</strong> ${name} | ${bs} Bs ($${usd} USD)`;
-            
-            const dynamicFormFields = document.getElementById('dynamicFormFields');
-            let fieldsHtml = '';
+            document.getElementById('clientForm').style.display = 'block';
+            nickFF = "";
+            let html = '';
             
             if (game === 'freefire') {
-                fieldsHtml = `
-                    <div class="form-group">
-                        <label>🔑 ID de Free Fire *</label>
-                        <input type="text" id="gameId" placeholder="Ej: 123456789" required>
-                        <div id="verifyResult" class="verify-result"></div>
-                    </div>
-                    <div class="form-group">
-                        <label>📝 Referencia del pago *</label>
-                        <input type="text" id="reference" placeholder="Número de referencia de tu transferencia" required>
-                    </div>
-                `;
-            } else if (game === 'blockstrike') {
-                fieldsHtml = `
-                    <div class="form-group">
-                        <label>🎮 ID de Block Strike *</label>
-                        <input type="text" id="gameId" placeholder="Tu ID de Block Strike" required>
-                    </div>
-                    <div class="form-group">
-                        <label>📝 Referencia del pago *</label>
-                        <input type="text" id="reference" placeholder="Número de referencia de tu transferencia" required>
-                    </div>
-                `;
-            } else if (game === 'roblox') {
-                fieldsHtml = `
-                    <div class="form-group">
-                        <label>📧 Correo de Roblox *</label>
-                        <input type="email" id="robloxEmail" placeholder="correo@ejemplo.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>👤 Usuario de Roblox *</label>
-                        <input type="text" id="robloxUser" placeholder="Nombre de usuario" required>
-                    </div>
-                    <div class="form-group">
-                        <label>📝 Referencia del pago *</label>
-                        <input type="text" id="reference" placeholder="Número de referencia de tu transferencia" required>
-                    </div>
-                `;
+                html = `<div class="form-group"><label>ID DE JUGADOR</label><input type="text" id="uId" placeholder="Pega el ID"><div id="vSt"></div></div>`;
             } else if (game === 'netflix') {
-                fieldsHtml = `
-                    <div class="form-group">
-                        <label>📱 Teléfono para la cuenta Netflix *</label>
-                        <input type="tel" id="netflixPhone" placeholder="04241234567" required>
-                    </div>
-                    <div class="form-group">
-                        <label>📝 Referencia del pago *</label>
-                        <input type="text" id="reference" placeholder="Número de referencia de tu transferencia" required>
-                    </div>
-                `;
-            } else {
-                fieldsHtml = `
-                    <div class="form-group">
-                        <label>🎮 ID de Call of Duty *</label>
-                        <input type="text" id="gameId" placeholder="Tu ID de Call of Duty" required>
-                    </div>
-                    <div class="form-group">
-                        <label>📝 Referencia del pago *</label>
-                        <input type="text" id="reference" placeholder="Número de referencia de tu transferencia" required>
-                    </div>
-                `;
+                html = `<div class="form-group"><label>NÚMERO DE TELÉFONO</label><input type="text" id="uId" placeholder="Tu número"></div>`;
+            } else if (game === 'roblox') {
+                html = `<div class="form-group"><label>CORREO ELECTRÓNICO</label><input type="email" id="uId" placeholder="Tu correo de Roblox"></div>`;
+            } else if (game === 'blockstrike') {
+                html = `<div class="form-group"><label>ID DE JUGADOR</label><input type="text" id="uId" placeholder="Tu ID de Block Strike"></div>`;
             }
             
-            dynamicFormFields.innerHTML = fieldsHtml;
-            
-            // Si es Free Fire, agregar evento de verificación
+            html += `<div class="form-group"><label>REFERENCIA DE PAGO</label><input type="text" id="refP" placeholder="Nro de confirmación"></div>`;
+            document.getElementById('dynamicFields').innerHTML = html;
+
             if (game === 'freefire') {
-                const idInput = document.getElementById('gameId');
-                if (idInput) {
-                    idInput.addEventListener('blur', async function() {
-                        const uid = this.value.trim();
-                        const resultDiv = document.getElementById('verifyResult');
-                        
-                        if (!uid) {
-                            resultDiv.innerHTML = '';
-                            resultDiv.className = 'verify-result';
-                            verifiedNickname = '';
-                            return;
-                        }
-                        
-                        resultDiv.innerHTML = '🔄 Verificando ID...';
-                        resultDiv.className = 'verify-result loading';
-                        
-                        const regions = ['id', 'sg', 'bd', 'ind', 'br', 'th', 'vn', 'pk'];
-                        let verified = false;
-                        
-                        for (const region of regions) {
-                            const result = await verifyFreeFireId(uid, region);
-                            if (result.success) {
-                                verifiedNickname = result.nickname;
-                                resultDiv.innerHTML = result.message;
-                                resultDiv.className = 'verify-result success';
-                                verified = true;
-                                break;
-                            }
-                        }
-                        
-                        if (!verified) {
-                            verifiedNickname = '';
-                            resultDiv.innerHTML = '❌ ID no encontrado. Verifica que sea correcto o inténtalo de nuevo.';
-                            resultDiv.className = 'verify-result error';
-                        }
-                    });
-                }
+                document.getElementById('uId').onblur = async function() {
+                    if (!this.value) return;
+                    document.getElementById('vSt').innerText = "Buscando...";
+                    try {
+                        const r = await fetch(`https://wlx-demon-info.vercel.app/profile_info?uid=${this.value}&region=id&key=FFwlx`);
+                        const d = await r.json();
+                        if (d.success) { nickFF = d.AccountInfo.AccountName; document.getElementById('vSt').innerHTML = `<span style="color:#4ecdc4">✅ ${nickFF}</span>`; }
+                        else { document.getElementById('vSt').innerHTML = `<span style="color:#ff6b6b">❌ No encontrado</span>`; }
+                    } catch (e) { document.getElementById('vSt').innerText = ""; }
+                };
             }
-            
-            document.getElementById('orderSummary').style.display = 'none';
-            document.getElementById('sendOrderBtn').style.display = 'none';
-            document.getElementById('previewOrderBtn').style.display = 'block';
-            
-            setTimeout(() => {
-                document.getElementById('paymentSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
+            document.getElementById('pagoModulo').scrollIntoView({ behavior: 'smooth' });
         }
 
-        document.getElementById('previewOrderBtn').addEventListener('click', function() {
-            let userData = '';
-            
-            if (selectedProduct.game === 'freefire') {
-                let id = document.getElementById('gameId')?.value || '';
-                if (!id) { alert('❌ Ingresa tu ID de Free Fire'); return; }
-                const displayName = verifiedNickname ? ` (${verifiedNickname})` : '';
-                userData = id + displayName;
-                currentUserData = `ID Free Fire: ${id}${verifiedNickname ? ` | Nick: ${verifiedNickname}` : ''}`;
-            } else if (selectedProduct.game === 'blockstrike') {
-                let id = document.getElementById('gameId')?.value || '';
-                if (!id) { alert('❌ Ingresa tu ID de Block Strike'); return; }
-                userData = id;
-                currentUserData = `ID Block Strike: ${id}`;
-            } else if (selectedProduct.game === 'roblox') {
-                let robloxEmail = document.getElementById('robloxEmail')?.value || '';
-                let robloxUser = document.getElementById('robloxUser')?.value || '';
-                if (!robloxEmail) { alert('❌ Ingresa tu correo de Roblox'); return; }
-                if (!robloxUser) { alert('❌ Ingresa tu usuario de Roblox'); return; }
-                userData = `${robloxEmail} / ${robloxUser}`;
-                currentUserData = `Correo: ${robloxEmail} | Usuario: ${robloxUser}`;
-            } else if (selectedProduct.game === 'netflix') {
-                let phone = document.getElementById('netflixPhone')?.value || '';
-                if (!phone) { alert('❌ Ingresa tu teléfono para Netflix'); return; }
-                userData = phone;
-                currentUserData = `Teléfono: ${phone}`;
-            } else {
-                let id = document.getElementById('gameId')?.value || '';
-                if (!id) { alert('❌ Ingresa tu ID de Call of Duty'); return; }
-                userData = id;
-                currentUserData = `ID Call of Duty: ${id}`;
-            }
-            
-            let reference = document.getElementById('reference')?.value || '';
-            if (!reference) { alert('❌ Ingresa la referencia del pago'); return; }
-            currentReference = reference;
-            
-            document.getElementById('summaryProduct').innerText = `${selectedProduct.name} (${selectedProduct.game.toUpperCase()})`;
-            document.getElementById('summaryAmount').innerText = `${selectedProduct.bs} Bs ($${selectedProduct.usd} USD)`;
-            document.getElementById('summaryUserData').innerText = userData;
-            document.getElementById('summaryReference').innerText = reference;
-            
-            document.getElementById('orderSummary').style.display = 'block';
-            document.getElementById('sendOrderBtn').style.display = 'block';
-            this.style.display = 'none';
-        });
+        document.getElementById('btnCopiarTodo').onclick = function() {
+            const m = document.getElementById('dynamicAmount').innerText;
+            if (m.includes('[')) return alert("Selecciona producto");
+            navigator.clipboard.writeText(`Banco: Venezuela (0102)\nTeléfono: 04228242411\nCédula: 32824869\nMonto: ${m}`);
+            this.innerText = "✅ COPIADO";
+            setTimeout(() => this.innerText = "📋 Copiar todos los datos", 2000);
+        };
 
-        document.getElementById('sendOrderBtn').addEventListener('click', function() {
-            const mensaje = `🛒 *NUEVO PEDIDO*%0A%0A🎮 *Juego:* ${selectedProduct.game.toUpperCase()}%0A📦 *Producto:* ${selectedProduct.name}%0A💰 *Monto:* ${selectedProduct.bs} Bs ($${selectedProduct.usd} USD)%0A%0A📝 *Datos del cliente:*%0A${currentUserData}%0A🏦 *Referencia de pago:* ${currentReference}`;
-            
-            window.open(`https://wa.me/584264696162?text=${mensaje}`, '_blank');
-            alert('✅ Pedido enviado. En breve recibirás respuesta por WhatsApp.');
-            
-            document.getElementById('clientForm').style.display = 'none';
-            document.getElementById('dynamicAmount').innerText = '[Selecciona un producto]';
-            document.getElementById('orderSummary').style.display = 'none';
-            document.getElementById('sendOrderBtn').style.display = 'none';
-            document.getElementById('previewOrderBtn').style.display = 'block';
-            verifiedNickname = '';
-        });
-
-        const copyBtn = document.getElementById('copyBankBtn');
-        if (copyBtn) {
-            copyBtn.addEventListener('click', function() {
-                const montoElement = document.getElementById('dynamicAmount');
-                let montoTexto = montoElement ? montoElement.innerText : '[No seleccionado]';
-                const textoCompleto = `Banco: Venezuela (0102)\nCédula: 32824869\nTeléfono: 04228242411\nMonto: ${montoTexto}`;
-                navigator.clipboard.writeText(textoCompleto).then(() => {
-                    const originalText = this.innerText;
-                    this.innerText = '✅ ¡Todo copiado!';
-                    setTimeout(() => {
-                        this.innerText = originalText;
-                    }, 2000);
-                });
-            });
-        }
+        document.getElementById('btnEnviar').onclick = function() {
+            const val = document.getElementById('uId').value;
+            const ref = document.getElementById('refP').value;
+            if (!val || !ref) return alert("Completa los datos");
+            let tD = prodSel.game === 'netflix' ? "Teléfono" : prodSel.game === 'roblox' ? "Correo" : "ID";
+            const msg = `🛒 *NUEVO PEDIDO*%0A%0A🎮 *Juego:* ${prodSel.game.toUpperCase()}%0A📦 *Producto:* ${prodSel.name}%0A💰 *Monto:* ${prodSel.bs} Bs%0A🆔 *${tD}:* ${val} ${nickFF ? '('+nickFF+')' : ''}%0A🏦 *Ref:* ${ref}`;
+            window.open(`https://wa.me/584264696162?text=${msg}`, '_blank');
+        };
     </script>
 </body>
 </html>
